@@ -1,5 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_sqflite_example/widget/navigator/navigator.dart';
+import '../../widget/navigator/navigator.dart';
 import 'package:provider/provider.dart';
 import '../../../widget/border.dart';
 import '../../../widget/buttons/small_white_elevation_button.dart';
@@ -15,14 +17,9 @@ import 'add_product_screen.dart';
 import 'edit_product_screen.dart';
 import 'image_screen.dart';
 
-class ShowProductScreen extends StatefulWidget {
+class ShowProductScreen extends StatelessWidget {
   const ShowProductScreen({Key? key}) : super(key: key);
 
-  @override
-  _ShowProductScreenState createState() => _ShowProductScreenState();
-}
-
-class _ShowProductScreenState extends State<ShowProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,7 +91,7 @@ class _ShowProductScreenState extends State<ShowProductScreen> {
                                   id: helperVar.id,
                                   productName: helperVar.productName,
                                   productPrice: helperVar.productPrice,
-                                  productImage: helperVar.productImage,
+                                  productImage:helperVar.productImage,
                                   index: index,
                                 ),
                               );
@@ -207,7 +204,7 @@ class MainBody extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                helper.productImage.path != '0'
+                helper.productImage.toString() != '0'
                     ? ClipRRect(
                         borderRadius: borderWidget(context),
                         child: GestureDetector(
@@ -215,7 +212,7 @@ class MainBody extends StatelessWidget {
                             navigatorPushWidget(
                               context,
                               ImageScreen(
-                                image: helper.productImage,
+                                image: File(helper.productImage),
                                 heroTag: 'flutterLogo$index',
                               ),
                             );
@@ -224,7 +221,7 @@ class MainBody extends StatelessWidget {
                             tag: 'flutterLogo$index',
                             child: FadeInImage(
                               placeholder: const AssetImage('loading.gif'),
-                              image: FileImage(helper.productImage),
+                              image: FileImage(File(helper.productImage)),
                               width: width * 0.25,
                               height: height * 0.17,
                               fit: BoxFit.cover,

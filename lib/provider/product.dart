@@ -9,7 +9,7 @@ class ProductModel {
   final String id;
   String productName;
   String productPrice;
-  File productImage;
+  String productImage;
 
   ProductModel({
     required this.id,
@@ -65,7 +65,7 @@ class ProductProvider extends ChangeNotifier {
   Future insertDatabase(
     String productName,
     String productPrice,
-    File productImage,
+    String productImage,
   ) async {
     final newProduct = ProductModel(
       id: const Uuid().v1(),
@@ -75,17 +75,18 @@ class ProductProvider extends ChangeNotifier {
     );
     _item.add(newProduct);
 
-    DBHelper.insert(DBHelper.product, {
+  await  DBHelper.insert(DBHelper.product, {
       'id': newProduct.id,
       'productName': newProduct.productName,
       'productPrice': newProduct.productPrice,
-      'productImage': newProduct.productImage.path,
+      'productImage': newProduct.productImage,
     });
 
+  deleteImage();
     notifyListeners();
   }
 
-// نمایش محصولات فعال
+// show items
   Future<void> selectProducts() async {
     final dataList = await DBHelper.selectProduct();
     _item = dataList
@@ -93,7 +94,7 @@ class ProductProvider extends ChangeNotifier {
               id: item['id'],
               productName: item['productName'],
               productPrice: item['productPrice'],
-              productImage: File(item['productImage']),
+              productImage: item['productImage'],
             ))
         .toList();
     notifyListeners();
@@ -143,4 +144,5 @@ class ProductProvider extends ChangeNotifier {
     );
     notifyListeners();
   }
+
 }

@@ -15,10 +15,10 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+1
+version: 1.0.8+1
 
 environment:
-  sdk: ">=2.16.2 <3.0.0"
+  sdk: ">=2.18.0 <3.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -38,13 +38,14 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  provider: ^6.0.1
-  awesome_dialog: ^2.1.1
-  sqflite: ^2.0.0+4
+  provider: ^6.0.3
+  awesome_dialog: ^3.0.1
+  sqflite: ^2.1.0
   mask_text_input_formatter: ^2.0.0
-  image_picker: ^0.8.4+4
-  uuid: ^3.0.5
+  image_picker: ^0.8.5+3
+  uuid: ^3.0.6
   intl: ^0.17.0
+  animate_do: ^2.1.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
